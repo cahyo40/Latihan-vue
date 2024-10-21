@@ -9,9 +9,14 @@
 
     <v-spacer></v-spacer>
 
-    <v-btn icon="mdi-bell" variant="text"></v-btn>
+    <v-btn icon="mdi-logout" variant="text" @click="logoutUser"></v-btn>
   </v-app-bar>
 </template>
 <script setup>
+import { useAuthStore } from '@/stores/AuthStore'
+
+const authStore = useAuthStore()
+const { logoutUser } = authStore
+
 defineEmits(['openClose'])
 </script>

@@ -31,3 +31,5 @@ coverage
 # Firebase configuration file
 src/config/firebase.js
 
+# Vuetify cache
+.vuetify-cache

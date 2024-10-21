@@ -1,8 +1,6 @@
 <template>
   <v-list>
-    <v-list-subheader class="pa-5 text-uppercase text-h8">{{
-      username
-    }}</v-list-subheader>
+    <v-list-subheader class="pa-5 text-uppercase text-h8" />
     <v-list-item
       v-for="(item, index) in items"
       :key="index"
@@ -18,10 +16,7 @@
   </v-list>
 </template>
 <script setup>
-import { inject } from 'vue'
-
 // get data from provide username at App.Vue
-const username = inject('username')
 
 defineProps({
   items: {

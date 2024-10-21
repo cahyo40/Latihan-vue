@@ -12,14 +12,18 @@ import LoginView from '../views/public-view/LoginView.vue';
 import CategoryPublicView from '../views/public-view/CategoryView.vue';
 
 import NotFoundView from '../views/error-view/NotFoundView.vue';
-const login = true;
+
+import { auth } from '@/config/firebase'
+
+
+
 
 const requireAuth = (to, from, next) => {
-  if (login == true) {
-    next();
-  } else {
-    alert('anda belum login');
+  const userAuth = auth.currentUser;
+  if (!userAuth) {
     next({ name: 'Login' });
+  } else {
+    next();
   }
 }
 
@@ -33,6 +37,11 @@ const router = createRouter({
       component: DashboardLayout, //
       beforeEnter: requireAuth, // Memanggil fungsi requireAuth sebelum masuk ke route ini
       children: [
+        {
+          path: '',
+          redirect: { name: 'Dashboard' }
+
+        },
         {
           path: './',
           name: 'Dashboard',

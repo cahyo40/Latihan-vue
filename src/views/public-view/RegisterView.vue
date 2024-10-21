@@ -1,5 +1,9 @@
 <template>
   <div>
-    <h1>Register</h1>
+    <FormAuthComponent />
   </div>
 </template>
+
+<script setup>
+import FormAuthComponent from '@/components/public-components/FormAuthComponent.vue'
+</script>
