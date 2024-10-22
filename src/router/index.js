@@ -10,6 +10,9 @@ import LandingPage from '../views/public-view/LandingPage.vue';
 import RegisterView from '../views/public-view/RegisterView.vue';
 import LoginView from '../views/public-view/LoginView.vue';
 import CategoryPublicView from '../views/public-view/CategoryView.vue';
+import CreateNewsView from '../views/dashboard-view/news/CreateNewsView.vue';
+import DetailNewsView from '../views/dashboard-view/news/DetailNewsView.vue';
+import UpdateNewsView from '../views/dashboard-view/news/UpdateNewsView.vue';
 
 import NotFoundView from '../views/error-view/NotFoundView.vue';
 
@@ -51,6 +54,22 @@ const router = createRouter({
           path: 'news',
           name: 'News',
           component: NewsView,
+
+        },
+        {
+          path: 'news/create',
+          name: 'CreateNews',
+          component: CreateNewsView,
+        },
+        {
+          path: 'news/:id',
+          name: 'DetailNews',
+          component: DetailNewsView,
+        },
+        {
+          path: 'news/:id/update',
+          name: 'UpdateNews',
+          component: UpdateNewsView,
         },
         {
           path: 'category',
