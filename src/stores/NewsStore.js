@@ -1,6 +1,6 @@
 import { defineStore, storeToRefs } from 'pinia'
 import { db } from '@/config/firebase'
-import { collection, addDoc, getDocs, getDoc, doc, updateDoc, deleteDoc } from 'firebase/firestore'
+import { collection, addDoc, getDocs, getDoc, doc, updateDoc, deleteDoc, query, where } from 'firebase/firestore'
 import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/AuthStore'
@@ -44,6 +44,7 @@ export const useNewsStore = defineStore('news', () => {
                     username: currentUser.value.username,
                     email: currentUser.value.email,
                 },
+                image: null,
                 createdAt: Date.now()
             })
             alert('News created successfully')
@@ -70,8 +71,15 @@ export const useNewsStore = defineStore('news', () => {
 
             return { ...news.data(), id: news.id }
         })
+    }
 
+    const readNewsByCategory = async (idCategory) => {
+        const q = query(collection(db, 'news'), where('category.id', '==', idCategory));
 
+        const docs = await getDocs(q)
+        allNews.value = docs.docs.map((news) => {
+            return { ...news.data(), id: news.id }
+        })
     }
 
     const getDetailNews = async (id) => {
@@ -109,6 +117,7 @@ export const useNewsStore = defineStore('news', () => {
     return {
         createOrUpdateNews,
         readNews,
+        readNewsByCategory,
         deleteNews,
         getDetailNews,
         setUpdate,

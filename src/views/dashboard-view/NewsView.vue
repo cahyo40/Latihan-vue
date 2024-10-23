@@ -9,7 +9,11 @@
         <v-img
           class="align-end text-white"
           height="200"
-          src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+          :src="
+            item.image
+              ? item.image
+              : 'https://cdn.vuetifyjs.com/images/cards/docks.jpg'
+          "
           cover
         >
           <v-card-title>{{ item.title.substring(0, 20) }}</v-card-title>
