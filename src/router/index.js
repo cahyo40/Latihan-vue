@@ -51,42 +51,65 @@ const router = createRouter({
           path: './',
           name: 'Dashboard',
           component: DashboardView,
+          meta: {
+            title: "Dashboard"
+          }
         },
         {
           path: 'news',
           name: 'News',
           component: NewsView,
-
+          meta: {
+            title: "Berita"
+          }
         },
         {
           path: 'news/create',
           name: 'CreateNews',
           component: CreateNewsView,
+          meta: {
+            title: "Buat Berita"
+          }
         },
         {
           path: 'news/:id',
           name: 'DetailNews',
           component: DetailNewsView,
+          meta: {
+            title: "Detail Berita"
+          }
         },
         {
           path: 'news/:id/update',
           name: 'UpdateNews',
           component: UpdateNewsView,
+          meta: {
+            title: "Update Berita"
+          }
         },
         {
           path: 'category',
           name: 'Category',
           component: CategoryView,
+          meta: {
+            title: "Kategori"
+          }
         },
         {
           path: 'user',
           name: 'User',
           component: ProfileView,
+          meta: {
+            title: "User"
+          }
         },
         {
           path: 'category/:name',
           name: 'Categoryname',
           component: DetailCategory,
+          meta: {
+            title: "Detail Kategori"
+          }
         }
       ]
 
@@ -100,29 +123,47 @@ const router = createRouter({
           path: '/',
           name: 'LandingPage',
           component: LandingPage,
+          meta: {
+            title: "Beranda"
+          }
         },
         {
           path: '/news/:id',
           name: 'DetailNewsPublic',
           component: DetailNewsPublicView,
+          meta: {
+            title: "Detail Berita"
+          }
         },
         {
           path: 'register',
           name: 'Register',
           component: RegisterView,
+          meta: {
+            title: "Register"
+          }
         }, {
           path: 'login',
           name: 'Login',
           component: LoginView,
+          meta: {
+            title: "Login"
+          }
         }, {
           path: 'category',
           name: 'Categorypublic',
           component: CategoryPublicView,
+          meta: {
+            title: "Kategori"
+          }
         },
         {
           path: '/category/:id',
           name: 'NewsByCategory',
           component: NewsByCategoryView,
+          meta: {
+            title: "Berita Berdasarkan Kategori"
+          }
         }
       ],
     },
@@ -134,4 +175,9 @@ const router = createRouter({
   ],
 })
 
-export default router
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title || "Portal Berita"
+  next()
+})
+
+export default router;
